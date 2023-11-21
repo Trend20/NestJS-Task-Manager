@@ -1,16 +1,25 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import { Task } from './task.model';
+import { Task, TaskStatus } from './task.model';
+import { CreateTaskDto } from './dto/create-task.dto';
 
 @Controller('tasks')
 export class TasksController {
   constructor(private taskService: TasksService) {}
 
   @Post()
-  createTask(@Body() body): Task {
-    console.log('Body', body);
-    const { title, description } = body;
-    return this.taskService.createTask(title, description);
+  createTask(@Body() createTaskDto: CreateTaskDto): Task {
+    console.log('Body', createTaskDto);
+    // const { title, description } = createTaskDto;
+    return this.taskService.createTask(createTaskDto);
   }
 
   @Get()
@@ -19,19 +28,19 @@ export class TasksController {
   }
 
   @Get('/:id')
-  getTask() {
-    console.log('This is the task');
+  getTask(@Param('id') id: string): Task {
+    return this.taskService.getTask(id);
   }
 
   // update task by ID
-  @Put('/:id')
-  updateTak() {
-    console.log('This is the updated task');
+  @Patch('/:id/status')
+  updateTask(@Param('id') id: string, @Body() status: TaskStatus) {
+    this.taskService.updateTaskStatus(id, status);
   }
 
   // delete task by ID
   @Delete('/:id')
-  deleteTask() {
-    console.log('This is the deleted task');
+  deleteTask(@Param('id') id: string): void {
+    return this.taskService.deleteTask(id);
   }
 }

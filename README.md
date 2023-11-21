@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Trend20/NestJS-Task-Manager" target="blank" text-decoration="none">Task Manager</a>
+  <a href="https://github.com/Trend20/NestJS-Task-Manager" target="blank" textDecoration="none">Task Manager</a>
 </p>
 
 ## Description

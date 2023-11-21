@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="https://github.com/Trend20/NestJS-Task-Manager" target="blank" decoration="none">Task Manager</a>
+  <a href="https://github.com/Trend20/NestJS-Task-Manager" target="blank" text-decoration="none">Task Manager</a>
 </p>
 
 ## Description
 
-Task Manager Application built using [Nest](http://nestjs.com/)
+Task Manager Application built using [Nest](http://nestjs.com/).
 
 ## Installation
 

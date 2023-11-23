@@ -18,6 +18,9 @@ It has access to the `request`, `response` and the `next` middleware function.
 
 You can implement a custom Nest middleware using a function or a class with the `@Injectable` decorator. The class should implement the `NestMiddleware` interface while the function does not have any specification.
 
+## Exception filters
+
+
 
 ## Installation
 

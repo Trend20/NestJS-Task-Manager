@@ -20,7 +20,46 @@ You can implement a custom Nest middleware using a function or a class with the 
 
 ## Exception filters
 
+Nest comes with built in exception layers which is responsible for processing unhandled exceptions across an application.
+When an exception is not handled by your application code, it is caught by this layer which then sends a response message to the user.
 
+Out of the box, this functionality is handled by the `global exception filter`  which handles exception of type `HttpException`.
+
+## Throwing standard exceptions
+
+Nest provides `HttpException` which is exposed from the `@nestjs/common` package.
+For typical HTTP REST/GraphQL API based applications, it's best practice to send standard Http response object when certain error occurs.
+
+## Custom Exceptions
+In most cases, you will not need to write your own exceptions and just use the built in one but you have the flexibility to write your own `custom exceptions`.
+Custom exceptions inherits from the base `HttpException` class.
+
+## Built In HTTP-Exception
+
+Nest provides a set of in-built exceptions that inherits the base  HttpExceptions. These exceptions are exposed through the `@nestjs/common` package.
+
+    BadRequestException
+    UnauthorizedException
+    NotFoundException
+    ForbiddenException
+    NotAcceptableException
+    RequestTimeoutException
+    ConflictException
+    GoneException
+    HttpVersionNotSupportedException
+    PayloadTooLargeException
+    UnsupportedMediaTypeException
+    UnprocessableEntityException
+    InternalServerErrorException
+    NotImplementedException
+    ImATeapotException
+    MethodNotAllowedException
+    BadGatewayException
+    ServiceUnavailableException
+    GatewayTimeoutException
+    PreconditionFailedException
+
+### Exception filters
 
 ## Installation
 

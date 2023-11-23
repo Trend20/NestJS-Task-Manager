@@ -94,11 +94,12 @@ These built in pipes are derived from the `@nestjs/common` package.
 To use a pipe, we need to use an instance of the pipe class.
 In our `ParseIntPipe` example, we want to associate the pipe with a particular route handler method, and make sure it runs before the method is called. We do so with the following construct, which we'll refer to as binding the pipe at the method parameter level:
 
-`@Get(':id')
+```
+@Get(':id')
     async findOne(@Param('id', ParseIntPipe) id: number) {
     return this.catsService.findOne(id);
-}`
-
+}
+```
 
 ## Installation
 

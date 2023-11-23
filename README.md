@@ -61,6 +61,45 @@ Nest provides a set of in-built exceptions that inherits the base  HttpException
 
 ### Exception filters
 
+Built in exceptions can handle many cases but a times you may want to control the exception layer.
+
+
+
+## Pipes
+
+A pipe is a class that is annotated using the `@Injectable` decorator which implements the `PipeTransform` interface.
+
+Pipes have got two major use-cases:
+
+  `Transform`:  Transform input data from one type to another. e.g string to number
+  `validation`: validates input data and throw exception.
+
+Pipes operate on the `arguments` passed by a controller route handler. 
+
+Nest comes with in built pipes that you can use out-of-the box  but you can also build your own custom pipes.
+
+## Built In Pipes
+    ValidationPipe
+    ParseIntPipe
+    ParseFloatPipe
+    ParseBoolPipe
+    ParseArrayPipe
+    ParseUUIDPipe
+    ParseEnumPipe
+    DefaultValuePipe
+    ParseFilePipe
+These built in pipes are derived from the `@nestjs/common` package.
+
+### Binding Pipes
+To use a pipe, we need to use an instance of the pipe class.
+In our `ParseIntPipe` example, we want to associate the pipe with a particular route handler method, and make sure it runs before the method is called. We do so with the following construct, which we'll refer to as binding the pipe at the method parameter level:
+
+`@Get(':id')
+    async findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.catsService.findOne(id);
+}`
+
+
 ## Installation
 
 ```bash

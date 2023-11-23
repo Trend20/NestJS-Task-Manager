@@ -92,14 +92,57 @@ These built in pipes are derived from the `@nestjs/common` package.
 
 ### Binding Pipes
 To use a pipe, we need to use an instance of the pipe class.
-In our `ParseIntPipe` example, we want to associate the pipe with a particular route handler method, and make sure it runs before the method is called. We do so with the following construct, which we'll refer to as binding the pipe at the method parameter level:
+
+In our `ParseIntPipe` example, we want to associate the pipe with a particular route handler method, and make sure it runs before the method is called. 
+
+We do so with the following construct, which we'll refer to as binding the pipe at the method parameter level:
 
 ```
 @Get(':id')
-    async findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.catsService.findOne(id);
+    async getTaskById(@Param('id', ParseIntPipe) id: number) {
+    return this.taskService.findOne(id);
 }
 ```
+
+For example with a query string parameter:
+
+```
+
+@Get()
+async findOne(@Query('id', ParseIntPipe) id: number) {
+  return this.catsService.findOne(id);
+}
+```
+
+Here's an example of using the ParseUUIDPipe to parse a string parameter and validate if it is a UUID.
+```
+@Get(':uuid')
+async findOne(@Param('uuid', new ParseUUIDPipe()) uuid: string) {
+  return this.catsService.findOne(uuid);
+}
+```
+
+## Custom Pipes
+As mentioned, you can build your own custom pipes. While Nest provides a robust built-in ParseIntPipe and ValidationPipe, let's build simple custom versions of each from scratch to see how custom pipes are constructed.
+
+We start with a simple ValidationPipe. Initially, we'll have it simply take an input value and immediately return the same value, behaving like an identity function.
+
+```
+validation.pipe.ts
+JS
+
+
+import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
+
+@Injectable()
+export class ValidationPipe implements PipeTransform {
+  transform(value: any, metadata: ArgumentMetadata) {
+    return value;
+  }
+}
+```
+
+
 
 ## Installation
 
